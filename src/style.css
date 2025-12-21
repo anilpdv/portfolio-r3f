@@ -5,11 +5,26 @@ body,
   top: 0;
   left: 0;
   width: 100%;
+  width: 100vw;
   height: 100%;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
   background: linear-gradient(180deg, #0a0a12 0%, #12121a 100%);
   margin: 0;
   padding: 0;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure canvas takes full space */
+canvas {
+  display: block;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .htmlScreen iframe {

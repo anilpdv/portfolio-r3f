@@ -1,7 +1,36 @@
 {
-  "name": "portfolio-main",
-  "private": true,
-  "version": "0.0.0",
+  "name": "anil-palli-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive 3D portfolio showcasing Anil Palli's expertise in React, TypeScript, Next.js, and Three.js development",
+  "author": {
+    "name": "Anil Palli",
+    "email": "pdvanil42@gmail.com",
+    "url": "https://anilpdv.github.io/portfolio/"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "threejs",
+    "react-three-fiber",
+    "typescript",
+    "nextjs",
+    "frontend-developer",
+    "web-development",
+    "3d-graphics",
+    "interactive",
+    "webgl",
+    "anil-palli"
+  ],
+  "homepage": "https://anilpdv.github.io/portfolio-main/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anilpdv/portfolio-main.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anilpdv/portfolio-main/issues"
+  },
+  "license": "MIT",
+  "private": false,
   "type": "module",
   "scripts": {
     "dev": "vite",
