@@ -10,9 +10,9 @@ body,
 }
 
 .htmlScreen iframe {
-  width: 1010px;
-  height: 640px;
+  width: 1024px;
+  height: 670px;
   border: none;
-  border-radius: 10px;
-  background: #ffffff;
+  border-radius: 8px;
+  background: #000000;
 }

@@ -131,9 +131,9 @@ export default function Experience() {
           <Html
             transform
             wrapperClass="htmlScreen"
-            distanceFactor={1.5}
-            position={[0.12, -0.1, -2]}
-            rotation-x={-0.256}
+            distanceFactor={1.34}
+            position={[-0.2, 0.22, -1.48]}
+            rotation-x={-0.3}
             zIndexRange={[100, 0]}
           >
             <iframe src="https://anilpdv.github.io/portfolio/" />
