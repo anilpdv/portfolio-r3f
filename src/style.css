@@ -11,8 +11,9 @@ body,
 
 .htmlScreen iframe {
   width: 1024px;
-  height: 670px;
+  height: 680px;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   background: #000000;
+  overflow: auto;
 }
