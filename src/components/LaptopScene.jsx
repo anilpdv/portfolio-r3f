@@ -14,17 +14,25 @@ const LaptopScene = memo(function LaptopScene() {
       <rectAreaLight
         width={SCREEN_CONFIG.dimensions[0]}
         height={SCREEN_CONFIG.dimensions[1]}
-        intensity={10}
-        color="#4a90e2"
+        intensity={8}
+        color="#88ccff"
         rotation={[-0.1, Math.PI, 0]}
         position={[0, 0.55, -1.15]}
       />
 
       <pointLight
         position={[0, 2, 3]}
-        intensity={35}
-        color="#ffffff"
+        intensity={30}
+        color="#e8f4ff"
         distance={8}
+        decay={2}
+      />
+
+      <pointLight
+        position={[1, 1, 1]}
+        intensity={15}
+        color="#ffffff"
+        distance={5}
         decay={2}
       />
 

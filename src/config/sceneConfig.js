@@ -42,22 +42,22 @@ export const LIGHTING_CONFIG = {
 };
 
 export const PARTICLE_CONFIG = {
-  count: 200,
-  baseSize: 0.02,
-  opacity: 0.8,
+  count: 150,
+  baseSize: 0.015,
+  opacity: 0.6,
   colors: {
     primary: "#88ccff",
     secondary: "#ffffff",
     tertiary: "#4a90e2",
   },
   animation: {
-    rotationSpeed: 0.05,
-    pulseSpeed: 0.5,
-    pulseAmount: 0.15,
+    rotationSpeed: 0.03,
+    pulseSpeed: 0.3,
+    pulseAmount: 0.1,
   },
   distribution: {
-    minRadius: 3.5,
-    maxRadius: 6.5,
+    minRadius: 4,
+    maxRadius: 7,
     avoidanceZone: {
       x: [-2, 2],
       y: [-2.5, 1.5],
@@ -68,21 +68,15 @@ export const PARTICLE_CONFIG = {
 
 export const POST_PROCESSING_CONFIG = {
   bloom: {
-    luminanceThreshold: 1.0,
-    intensity: 0.15,
-    levels: 8,
+    luminanceThreshold: 0.95,
+    intensity: 0.25,
+    levels: 6,
     mipmapBlur: true,
-  },
-  depthOfField: {
-    focusDistance: 0,
-    focalLength: 0,
-    bokehScale: 0,
-    height: 480,
   },
   vignette: {
     eskil: false,
-    offset: 0.1,
-    darkness: 0.3,
+    offset: 0.15,
+    darkness: 0.4,
   },
 };
 
@@ -105,11 +99,11 @@ export const SCREEN_CONFIG = {
   distanceFactor: 1.17,
   url: "https://anilpdv.github.io/portfolio/",
   dimensions: [2.5, 1.65],
-  glowColor: "#4a90e2",
-  glowOpacity: 0.1,
+  glowColor: "#88ccff",
+  glowOpacity: 0.15,
   animation: {
-    floatSpeed: 0.3,
-    floatAmount: 0.005,
+    floatSpeed: 0.25,
+    floatAmount: 0.003,
   },
 };
 
@@ -117,14 +111,14 @@ export const TEXT_CONFIG = {
   content: "ANIL PALLI",
   position: [2.5, 0.75, 0.75],
   rotation: -1.25,
-  fontSize: 1.0,
+  fontSize: 1.1,
   font: "/bangers-v20-latin-regular.woff",
   color: "#ffffff",
-  outlineWidth: 0.02,
+  outlineWidth: 0.025,
   outlineColor: "#000000",
   animation: {
-    floatSpeed: 0.5,
-    floatAmount: 0.02,
+    floatSpeed: 0.4,
+    floatAmount: 0.015,
   },
 };
 
@@ -152,7 +146,7 @@ export const CONTROLS_CONFIG = {
 };
 
 export const PERFORMANCE_CONFIG = {
-  dpr: [1, 2],
+  dpr: [1, 1.5],
   antialias: true,
   powerPreference: "high-performance",
   stencil: false,

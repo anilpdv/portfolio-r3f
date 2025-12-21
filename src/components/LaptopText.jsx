@@ -22,7 +22,7 @@ const LaptopText = memo(function LaptopText({
         animation.floatAmount;
 
     const distance = state.camera.position.distanceTo(textRef.current.position);
-    const opacity = Math.min(1, Math.max(0.7, 1 - distance / 15));
+    const opacity = Math.min(1, Math.max(0.85, 1 - distance / 20));
     textRef.current.fillOpacity = opacity;
   }, 2);
 
