@@ -3,7 +3,6 @@ import { Suspense, memo } from "react";
 import { Loader } from "@react-three/drei";
 import Experience from "./Experience.jsx";
 import CameraAnimation from "./components/CameraAnimation.jsx";
-import CustomLoader from "./components/CustomLoader.jsx";
 import { SceneProvider } from "./context/SceneContext.jsx";
 import { CAMERA_CONFIG, PERFORMANCE_CONFIG } from "./config/sceneConfig.js";
 
@@ -32,7 +31,7 @@ const App = memo(function App() {
           camera.updateProjectionMatrix();
         }}
       >
-        <Suspense fallback={<CustomLoader />}>
+        <Suspense fallback={null}>
           <CameraAnimation />
           <Experience />
         </Suspense>
