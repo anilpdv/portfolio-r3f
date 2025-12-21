@@ -24,9 +24,9 @@ export default function LaptopScene() {
 
       <Laptop scale={13} positionY={-1.2} />
       <LaptopScreen
-        position={[0, 0.09, -2]}
+        position={[0.01, 0.1, -2]}
         rotation={-0.256}
-        distanceFactor={1.55}
+        distanceFactor={1.56}
         url="https://anilpdv.github.io/portfolio/"
       />
 
