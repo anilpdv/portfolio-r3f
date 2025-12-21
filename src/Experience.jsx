@@ -61,17 +61,17 @@ function FloatingParticles({ count = 200 }) {
 }
 
 export default function Experience() {
-  const computer = useGLTF("./laptop.gltf");
+  // Using the high quality model as requested
+  const computer = useGLTF("/macbook_pro_14-inch_m5/scene.gltf");
+
   return (
     <>
       <Environment preset="city" />
       <color args={["#0f0f1a"]} attach="background" />
       <fog attach="fog" args={["#0f0f1a", 5, 15]} />
 
-      {/* Floating particles */}
       <FloatingParticles count={200} />
 
-      {/* Enhanced 3-point lighting */}
       <ambientLight intensity={0.4} color="#ffffff" />
 
       <spotLight
@@ -116,7 +116,6 @@ export default function Experience() {
             rotation={[-0.1, Math.PI, 0]}
             position={[0, 0.55, -1.15]}
           />
-          {/* Direct light on screen for iframe visibility */}
           <spotLight
             position={[0, 3, 0]}
             intensity={100}
@@ -124,22 +123,26 @@ export default function Experience() {
             penumbra={0.5}
             color="#ffffff"
           />
-          <primitive object={computer.scene} position-y={-1.2}>
-            <Html
-              transform
-              wrapperClass="htmlScreen"
-              distanceFactor={1.19}
-              position={[0, 1.56, -1.4]}
-              rotation-x={-0.256}
-              zIndexRange={[100, 0]}
-            >
-              <iframe src="https://anilpdv.github.io/portfolio/"></iframe>
-            </Html>
-          </primitive>
+
+          {/* LAPTOP MODEL */}
+          <primitive object={computer.scene} position-y={-1.2} scale={12} />
+
+          {/* HTML SCREEN - Now outside primitive to avoid scale inheritance */}
+          <Html
+            transform
+            wrapperClass="htmlScreen"
+            distanceFactor={1.5}
+            position={[0.12, -0.1, -2]}
+            rotation-x={-0.256}
+            zIndexRange={[100, 0]}
+          >
+            <iframe src="https://anilpdv.github.io/portfolio/" />
+          </Html>
+
           <Text
             fontSize={1.0}
             position={[2.2, 0.75, 0.75]}
-            font={"./bangers-v20-latin-regular.woff"}
+            font={"/bangers-v20-latin-regular.woff"}
             rotation-y={-1.25}
             maxWidth={2}
             textAlign="center"
@@ -151,8 +154,6 @@ export default function Experience() {
           </Text>
         </Float>
       </PresentationControls>
-      {/* Temporarily disabled - causing flickering */}
-      {/* <ContactShadows position-y={-1.4} opacity={0.4} scale={5} blur={2.4} /> */}
     </>
   );
 }

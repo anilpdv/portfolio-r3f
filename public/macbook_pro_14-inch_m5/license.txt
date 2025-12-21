@@ -1,0 +1,8 @@
+Model Information:
+* title:	MacBook Pro 14-inch M5
+* source:	https://sketchfab.com/3d-models/macbook-pro-14-inch-m5-652a992f4f244122ae251f9cbb81da1e
+* author:	Apple User (https://sketchfab.com/apple-user)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
