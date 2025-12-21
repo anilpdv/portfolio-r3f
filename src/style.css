@@ -278,8 +278,8 @@ canvas {
 
 .cursor-trail-particle {
   position: fixed;
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;

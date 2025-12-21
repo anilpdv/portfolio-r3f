@@ -106,7 +106,6 @@ const CustomCursor = memo(function CustomCursor() {
       {trail.map((particle) => {
         const age = now - particle.createdAt;
         const opacity = Math.max(0, 1 - age / FADE_DURATION);
-        const scale = 0.3 + opacity * 0.4;
 
         return (
           <div
@@ -116,7 +115,7 @@ const CustomCursor = memo(function CustomCursor() {
               left: particle.x,
               top: particle.y,
               opacity: opacity * 0.6,
-              transform: `translate(-50%, -50%) scale(${scale})`,
+              transform: `translate(-50%, -50%)`,
               backgroundColor: glowColor,
               boxShadow: `0 0 8px ${glowColor}`,
             }}

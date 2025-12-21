@@ -105,12 +105,21 @@ export const THEMES = {
       opacity: 0.25,
     },
     postProcessing: {
-      bloom: { intensity: 0.5, luminanceThreshold: 0.85 },
+      bloom: { intensity: 0.8, luminanceThreshold: 0.5 },
       vignette: { darkness: 0.5, offset: 0.1 },
     },
     text: {
       color: "#00ffff",
       outlineColor: "#ff00ff",
+      emissive: "#00ffff",
+      emissiveIntensity: 3,
+      glowLayers: [
+        { scale: 1.008, color: "#00ffff", opacity: 0.9 },
+        { scale: 1.02, color: "#ff00ff", opacity: 0.7 },
+        { scale: 1.04, color: "#00ff88", opacity: 0.5 },
+        { scale: 1.06, color: "#ff0088", opacity: 0.4 },
+        { scale: 1.08, color: "#ffff00", opacity: 0.3 },
+      ],
     },
     ui: {
       buttonBg: "rgba(20, 0, 40, 0.9)",

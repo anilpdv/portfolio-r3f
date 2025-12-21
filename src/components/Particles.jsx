@@ -91,10 +91,15 @@ const Particles = memo(function Particles({
       cols[i * 3 + 1] = mixedColor.g;
       cols[i * 3 + 2] = mixedColor.b;
 
-      szs[i] = size * (0.7 + Math.random() * 0.6);
+      szs[i] = size * (0.9 + Math.random() * 0.2);
     }
 
-    return { positions: pos, originalPositions: origPos, colors: cols, sizes: szs };
+    return {
+      positions: pos,
+      originalPositions: origPos,
+      colors: cols,
+      sizes: szs,
+    };
   }, [count, size, config, theme.particles]);
 
   // Update particle colors when theme changes
@@ -155,8 +160,11 @@ const Particles = memo(function Particles({
     const denominator = ray.direction.dot(planeNormal);
 
     if (Math.abs(denominator) > 0.0001) {
-      const t = planePoint.clone().sub(ray.origin).dot(planeNormal) / denominator;
-      mousePos3D.current.copy(ray.origin).add(ray.direction.clone().multiplyScalar(t));
+      const t =
+        planePoint.clone().sub(ray.origin).dot(planeNormal) / denominator;
+      mousePos3D.current
+        .copy(ray.origin)
+        .add(ray.direction.clone().multiplyScalar(t));
     }
 
     // Get the geometry and update positions
@@ -166,7 +174,9 @@ const Particles = memo(function Particles({
 
     // Transform mouse position to local space
     const inverseMatrix = pointsRef.current.matrixWorld.clone().invert();
-    const localMousePos = mousePos3D.current.clone().applyMatrix4(inverseMatrix);
+    const localMousePos = mousePos3D.current
+      .clone()
+      .applyMatrix4(inverseMatrix);
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
@@ -245,7 +255,7 @@ const Particles = memo(function Particles({
         />
       </bufferGeometry>
       <pointsMaterial
-        size={size}
+        size={1}
         vertexColors
         transparent
         opacity={opacity}

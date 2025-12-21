@@ -43,7 +43,7 @@ export const LIGHTING_CONFIG = {
 
 export const PARTICLE_CONFIG = {
   count: 200,
-  baseSize: 0.008,
+  baseSize: 0.003,
   opacity: 0.8,
   colors: {
     primary: "#88ccff",
