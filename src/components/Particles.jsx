@@ -7,10 +7,10 @@ import { useTheme } from "../context/ThemeContext";
 
 // Mouse interaction config
 const MOUSE_CONFIG = {
-  influenceRadius: 2.0,
-  repulsionStrength: 0.4,
-  returnDamping: 0.03,
-  maxDisplacement: 1.0,
+  influenceRadius: 1.5,
+  repulsionStrength: 0.3,
+  returnDamping: 0.05,
+  maxDisplacement: 0.3,
 };
 
 const Particles = memo(function Particles({
