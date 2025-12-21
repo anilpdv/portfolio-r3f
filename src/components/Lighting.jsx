@@ -1,32 +1,36 @@
-export default function Lighting() {
+import { memo } from "react";
+import { LIGHTING_CONFIG } from "../config/sceneConfig";
+
+const Lighting = memo(function Lighting() {
+  const { ambient, keyLight, fillLight, rimLight } = LIGHTING_CONFIG;
+
   return (
     <>
-      <ambientLight intensity={0.4} color="#ffffff" />
+      <ambientLight intensity={0.3} color="#ffffff" />
 
-      <spotLight
-        position={[5, 5, 5]}
-        intensity={70}
-        angle={0.3}
-        penumbra={0.5}
-        color="#4a90e2"
-        castShadow={false}
+      <directionalLight
+        position={keyLight.position}
+        intensity={0.5}
+        color="#ffffff"
       />
 
       <pointLight
-        position={[-3, 2, 2]}
-        intensity={30}
-        color="#ff9d5c"
-        distance={10}
+        position={fillLight.position}
+        intensity={20}
+        color="#e8f4ff"
+        distance={fillLight.distance}
         decay={2}
       />
 
       <pointLight
-        position={[0, 2, -3]}
-        intensity={40}
-        color="#b084cc"
-        distance={8}
+        position={rimLight.position}
+        intensity={20}
+        color="#88ccff"
+        distance={rimLight.distance}
         decay={2}
       />
     </>
   );
-}
+});
+
+export default Lighting;

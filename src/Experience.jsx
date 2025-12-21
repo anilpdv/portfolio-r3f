@@ -1,28 +1,51 @@
+import { memo } from "react";
 import { Environment, PresentationControls } from "@react-three/drei";
 import Particles from "./components/Particles";
 import Lighting from "./components/Lighting";
 import LaptopScene from "./components/LaptopScene";
+import PostProcessing from "./components/PostProcessing";
+import {
+  SCENE_CONFIG,
+  CONTROLS_CONFIG,
+  PARTICLE_CONFIG,
+} from "./config/sceneConfig";
+import { usePerformanceMonitor } from "./hooks/usePerformanceMonitor";
 
-export default function Experience() {
+const Experience = memo(function Experience() {
+  usePerformanceMonitor();
+
+  const { background, fog, environment } = SCENE_CONFIG;
+
   return (
     <>
-      <Environment preset="city" />
-      <color args={["#0f0f1a"]} attach="background" />
+      <color args={[background]} attach="background" />
+      <fog attach="fog" args={[fog.color, fog.near, fog.far]} />
 
-      <Particles count={200} color="#88ccff" size={0.02} opacity={0.8} />
+      <Particles
+        count={PARTICLE_CONFIG.count}
+        size={PARTICLE_CONFIG.baseSize}
+        opacity={PARTICLE_CONFIG.opacity}
+      />
 
       <Lighting />
 
       <PresentationControls
-        global
-        rotation={[0.25, 0.2, 0]}
-        polar={[-0.4, 0.2]}
-        azimuth={[-1, 0.75]}
-        config={{ mass: 2, tension: 400 }}
-        snap={false}
+        global={CONTROLS_CONFIG.global}
+        rotation={CONTROLS_CONFIG.rotation}
+        polar={CONTROLS_CONFIG.polar}
+        azimuth={CONTROLS_CONFIG.azimuth}
+        config={CONTROLS_CONFIG.config}
+        snap={CONTROLS_CONFIG.snap}
+        makeDefault
       >
-        <LaptopScene />
+        <group frustumCulled={false}>
+          <LaptopScene />
+        </group>
       </PresentationControls>
+
+      <PostProcessing />
     </>
   );
-}
+});
+
+export default Experience;

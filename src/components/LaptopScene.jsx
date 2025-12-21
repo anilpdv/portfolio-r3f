@@ -1,42 +1,54 @@
+import { memo } from "react";
 import Laptop from "./Laptop";
 import LaptopScreen from "./LaptopScreen";
 import LaptopText from "./LaptopText";
+import {
+  LAPTOP_CONFIG,
+  SCREEN_CONFIG,
+  TEXT_CONFIG,
+} from "../config/sceneConfig";
 
-export default function LaptopScene() {
+const LaptopScene = memo(function LaptopScene() {
   return (
     <group frustumCulled={false}>
       <rectAreaLight
-        width={2.5}
-        height={1.65}
-        intensity={65}
-        color="#ff6900"
+        width={SCREEN_CONFIG.dimensions[0]}
+        height={SCREEN_CONFIG.dimensions[1]}
+        intensity={10}
+        color="#4a90e2"
         rotation={[-0.1, Math.PI, 0]}
         position={[0, 0.55, -1.15]}
       />
 
-      <spotLight
-        position={[0, 3, 0]}
-        intensity={100}
-        angle={0.5}
-        penumbra={0.5}
+      <pointLight
+        position={[0, 2, 3]}
+        intensity={35}
         color="#ffffff"
+        distance={8}
+        decay={2}
       />
 
-      <Laptop scale={13} positionY={-1.2} />
+      <Laptop
+        scale={LAPTOP_CONFIG.scale}
+        positionX={LAPTOP_CONFIG.positionX}
+        positionY={LAPTOP_CONFIG.positionY}
+      />
       <LaptopScreen
         position={[0.01, 0.1, -2]}
-        rotation={-0.256}
+        rotation={SCREEN_CONFIG.rotation}
         distanceFactor={1.56}
-        url="https://anilpdv.github.io/portfolio/"
+        url={SCREEN_CONFIG.url}
       />
 
       <LaptopText
-        content="ANIL PALLI"
-        position={[2.2, 0.75, 0.75]}
-        rotation={-1.25}
-        fontSize={1.0}
-        font="/bangers-v20-latin-regular.woff"
+        content={TEXT_CONFIG.content}
+        position={TEXT_CONFIG.position}
+        rotation={TEXT_CONFIG.rotation}
+        fontSize={TEXT_CONFIG.fontSize}
+        font={TEXT_CONFIG.font}
       />
     </group>
   );
-}
+});
+
+export default LaptopScene;

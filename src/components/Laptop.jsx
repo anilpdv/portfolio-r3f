@@ -1,25 +1,48 @@
 import { useGLTF } from "@react-three/drei";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
+import { LAPTOP_CONFIG } from "../config/sceneConfig";
 
-export default function Laptop({ scale = 12, positionY = -1.2 }) {
-  const { scene } = useGLTF("/macbook_pro_14-inch_m5/scene.gltf");
+const Laptop = memo(function Laptop({
+  scale = LAPTOP_CONFIG.scale,
+  positionX = LAPTOP_CONFIG.positionX,
+  positionY = LAPTOP_CONFIG.positionY,
+}) {
+  const { scene } = useGLTF(LAPTOP_CONFIG.modelPath);
 
   useEffect(() => {
-    if (scene) {
-      scene.traverse((child) => {
-        if (child.isMesh) {
-          child.frustumCulled = false;
+    if (!scene) return;
+
+    scene.frustumCulled = false;
+
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        child.frustumCulled = false;
+        child.castShadow = false;
+        child.receiveShadow = false;
+
+        if (child.material) {
+          child.material.side = 2;
+          child.material.metalness = 0;
+          child.material.roughness = 1;
+          child.material.envMapIntensity = 0;
+          child.material.needsUpdate = true;
         }
-      });
-    }
+      }
+    });
   }, [scene]);
 
   return (
-    <primitive
-      object={scene}
-      position={[0, positionY, 0]}
-      scale={scale}
-      frustumCulled={false}
-    />
+    <group frustumCulled={false}>
+      <primitive
+        object={scene}
+        position={[positionX, positionY, 0]}
+        scale={scale}
+        frustumCulled={false}
+      />
+    </group>
   );
-}
+});
+
+useGLTF.preload(LAPTOP_CONFIG.modelPath);
+
+export default Laptop;
