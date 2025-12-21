@@ -133,3 +133,176 @@ canvas {
   font-size: 14px;
   font-weight: 500;
 }
+
+/* Theme Switcher */
+.theme-switcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--button-bg, rgba(20, 20, 30, 0.8));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  color: var(--button-text, #ffffff);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+    0 0 20px color-mix(in srgb, var(--glow-color, #88ccff) 20%, transparent);
+}
+
+.theme-switcher:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4),
+    0 0 30px color-mix(in srgb, var(--glow-color, #88ccff) 30%, transparent);
+}
+
+.theme-switcher:active {
+  transform: translateY(0);
+}
+
+.theme-switcher:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.theme-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.theme-icon.transitioning {
+  animation: iconSpin 0.6s ease;
+}
+
+@keyframes iconSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.theme-label {
+  text-transform: uppercase;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .theme-switcher {
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .theme-label {
+    display: none;
+  }
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.custom-cursor.visible {
+  opacity: 1;
+}
+
+.cursor-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: var(--cursor-color, #88ccff);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 6px var(--cursor-color, #88ccff),
+    0 0 12px var(--cursor-color, #88ccff);
+  animation: cursorPulse 2s ease-in-out infinite;
+}
+
+.cursor-ring {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--cursor-color, #88ccff);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+  transition: all 0.15s ease-out;
+}
+
+.custom-cursor.hovering .cursor-ring {
+  width: 28px;
+  height: 28px;
+  opacity: 0.5;
+  border-width: 1.5px;
+}
+
+.custom-cursor.hovering .cursor-dot {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+@keyframes cursorPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px var(--cursor-color, #88ccff),
+      0 0 20px var(--cursor-color, #88ccff);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 15px var(--cursor-color, #88ccff),
+      0 0 30px var(--cursor-color, #88ccff);
+  }
+}
+
+.cursor-trail-particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Hide default cursor on canvas */
+canvas {
+  cursor: none !important;
+}
+
+/* But keep cursor on interactive elements */
+button, a, [role="button"] {
+  cursor: none !important;
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor,
+  .cursor-trail-particle {
+    display: none !important;
+  }
+
+  canvas {
+    cursor: auto !important;
+  }
+}

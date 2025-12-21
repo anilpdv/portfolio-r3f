@@ -1,25 +1,21 @@
 import { memo } from "react";
-import { Environment, PresentationControls } from "@react-three/drei";
+import { PresentationControls } from "@react-three/drei";
 import Particles from "./components/Particles";
 import Lighting from "./components/Lighting";
 import LaptopScene from "./components/LaptopScene";
 import PostProcessing from "./components/PostProcessing";
-import {
-  SCENE_CONFIG,
-  CONTROLS_CONFIG,
-  PARTICLE_CONFIG,
-} from "./config/sceneConfig";
+import { CONTROLS_CONFIG, PARTICLE_CONFIG } from "./config/sceneConfig";
 import { usePerformanceMonitor } from "./hooks/usePerformanceMonitor";
+import { useTheme } from "./context/ThemeContext";
 
 const Experience = memo(function Experience() {
   usePerformanceMonitor();
-
-  const { background, fog, environment } = SCENE_CONFIG;
+  const { theme } = useTheme();
 
   return (
     <>
-      <color args={[background]} attach="background" />
-      <fog attach="fog" args={[fog.color, fog.near, fog.far]} />
+      <color args={[theme.background]} attach="background" />
+      <fog attach="fog" args={[theme.fog.color, theme.fog.near, theme.fog.far]} />
 
       <Particles
         count={PARTICLE_CONFIG.count}

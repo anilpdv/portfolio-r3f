@@ -42,9 +42,9 @@ export const LIGHTING_CONFIG = {
 };
 
 export const PARTICLE_CONFIG = {
-  count: 150,
-  baseSize: 0.015,
-  opacity: 0.6,
+  count: 200,
+  baseSize: 0.008,
+  opacity: 0.8,
   colors: {
     primary: "#88ccff",
     secondary: "#ffffff",

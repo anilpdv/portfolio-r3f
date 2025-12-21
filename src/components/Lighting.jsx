@@ -1,31 +1,37 @@
 import { memo } from "react";
 import { LIGHTING_CONFIG } from "../config/sceneConfig";
+import { useTheme } from "../context/ThemeContext";
 
 const Lighting = memo(function Lighting() {
-  const { ambient, keyLight, fillLight, rimLight } = LIGHTING_CONFIG;
+  const { keyLight, fillLight, rimLight } = LIGHTING_CONFIG;
+  const { theme } = useTheme();
+  const { lighting } = theme;
 
   return (
     <>
-      <ambientLight intensity={0.3} color="#ffffff" />
+      <ambientLight
+        intensity={lighting.ambient.intensity}
+        color={lighting.ambient.color}
+      />
 
       <directionalLight
         position={keyLight.position}
-        intensity={0.5}
-        color="#ffffff"
+        intensity={lighting.keyLight.intensity * 0.005}
+        color={lighting.keyLight.color}
       />
 
       <pointLight
         position={fillLight.position}
-        intensity={20}
-        color="#e8f4ff"
+        intensity={lighting.fillLight.intensity}
+        color={lighting.fillLight.color}
         distance={fillLight.distance}
         decay={2}
       />
 
       <pointLight
         position={rimLight.position}
-        intensity={20}
-        color="#88ccff"
+        intensity={lighting.rimLight.intensity}
+        color={lighting.rimLight.color}
         distance={rimLight.distance}
         decay={2}
       />
