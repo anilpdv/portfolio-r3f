@@ -14,6 +14,7 @@ const App = memo(function App() {
     <ThemeProvider>
       <SceneProvider>
         <Canvas
+          className="main-canvas"
           camera={{
             fov: CAMERA_CONFIG.fov,
             near: CAMERA_CONFIG.near,

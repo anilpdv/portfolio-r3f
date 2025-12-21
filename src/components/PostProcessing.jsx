@@ -23,7 +23,8 @@ const PostProcessing = memo(function PostProcessing() {
         intensity={bloom.intensity}
         levels={isNeonTheme ? 8 : defaultBloom.levels}
         mipmapBlur={defaultBloom.mipmapBlur}
-        radius={isNeonTheme ? 0.9 : 0.85}
+        radius={isNeonTheme ? 0.95 : 0.85}
+        luminanceSmoothing={isNeonTheme ? 0.025 : 0.9}
       />
       <Vignette
         eskil={false}

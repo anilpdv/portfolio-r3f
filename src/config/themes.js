@@ -105,7 +105,7 @@ export const THEMES = {
       opacity: 0.25,
     },
     postProcessing: {
-      bloom: { intensity: 0.8, luminanceThreshold: 0.5 },
+      bloom: { intensity: 0.4, luminanceThreshold: 0.9 },
       vignette: { darkness: 0.5, offset: 0.1 },
     },
     text: {

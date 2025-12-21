@@ -4,7 +4,6 @@ import { TEXT_CONFIG } from "../config/sceneConfig";
 import { useThrottledFrame } from "../hooks/useAnimationFrame";
 import { useTheme } from "../context/ThemeContext";
 import { THEMES } from "../config/themes";
-import NeonText from "./NeonText";
 
 const LaptopText = memo(function LaptopText({
   content = TEXT_CONFIG.content,
@@ -24,7 +23,7 @@ const LaptopText = memo(function LaptopText({
   useThrottledFrame((state) => {
     if (!isNeonTheme && textRef.current) {
       const time = state.clock.elapsedTime;
-      
+
       textRef.current.position.y =
         position[1] +
         Math.sin(time * animation.floatSpeed) * animation.floatAmount;
@@ -38,14 +37,50 @@ const LaptopText = memo(function LaptopText({
   }, 2);
 
   if (isNeonTheme) {
+    // Simple neon effect with bright colors
     return (
-      <NeonText
-        content={content}
-        position={position}
-        rotation={rotation}
-        fontSize={fontSize}
-        font={font}
-      />
+      <group>
+        {/* Background glow */}
+        <Text
+          fontSize={fontSize * 1.1}
+          position={position}
+          font={font}
+          rotation-y={rotation}
+          maxWidth={2}
+          textAlign="center"
+          letterSpacing={0.05}
+          color={"rgb(255, 0, 255)"} // Bright magenta
+          fillOpacity={0.3}
+          frustumCulled={false}
+          renderOrder={997}
+          anchorX="center"
+          anchorY="middle"
+        >
+          {content}
+        </Text>
+
+        {/* Main bright cyan text */}
+        <Text
+          ref={textRef}
+          fontSize={fontSize}
+          position={position}
+          font={font}
+          rotation-y={rotation}
+          maxWidth={2}
+          textAlign="center"
+          letterSpacing={0.05}
+          color={"rgb(0, 255, 255)"} // Bright cyan
+          outlineWidth={0.02}
+          outlineColor={"rgb(255, 0, 255)"} // Magenta outline
+          fillOpacity={1.0}
+          frustumCulled={false}
+          renderOrder={999}
+          anchorX="center"
+          anchorY="middle"
+        >
+          {content}
+        </Text>
+      </group>
     );
   }
 

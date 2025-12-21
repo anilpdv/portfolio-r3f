@@ -46,6 +46,11 @@ canvas {
   touch-action: none;
 }
 
+.main-canvas {
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
 .htmlScreen iframe {
   width: 1024px;
   height: 680px;
