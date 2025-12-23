@@ -30,3 +30,4 @@ const CameraAnimation = memo(function CameraAnimation() {
 });
 
 export default CameraAnimation;
+

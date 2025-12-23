@@ -79,6 +79,19 @@ const lerpTheme = (themeA, themeB, t) => {
     text: {
       color: "#" + lerpColor(themeA.text.color, themeB.text.color, t).getHexString(),
       outlineColor: "#" + lerpColor(themeA.text.outlineColor, themeB.text.outlineColor, t).getHexString(),
+      // Emissive color lerping
+      ...(themeA.text.emissive && themeB.text.emissive ? {
+        emissive: "#" + lerpColor(themeA.text.emissive, themeB.text.emissive, t).getHexString(),
+      } : themeA.text.emissive ? { emissive: themeA.text.emissive } : {}),
+      // Emissive intensity lerping
+      ...(themeA.text.emissiveIntensity !== undefined && themeB.text.emissiveIntensity !== undefined ? {
+        emissiveIntensity: lerpNumber(themeA.text.emissiveIntensity || 0, themeB.text.emissiveIntensity || 0, t),
+      } : themeA.text.emissiveIntensity !== undefined ? { emissiveIntensity: themeA.text.emissiveIntensity } : {}),
+      // GlowLayers array (threshold switch, not interpolated)
+      ...(t < 0.5
+        ? (themeA.text.glowLayers ? { glowLayers: themeA.text.glowLayers } : {})
+        : (themeB.text.glowLayers ? { glowLayers: themeB.text.glowLayers } : {})
+      ),
     },
     ui: themeA.ui && themeB.ui ? {
       buttonBg: t < 0.5 ? themeA.ui.buttonBg : themeB.ui.buttonBg,

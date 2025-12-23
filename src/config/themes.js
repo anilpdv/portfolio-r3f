@@ -27,12 +27,12 @@ export const THEMES = {
       opacity: 0.15,
     },
     postProcessing: {
-      bloom: { intensity: 0.25, luminanceThreshold: 0.95 },
+      bloom: { intensity: 0.01, luminanceThreshold: 0.01 },
       vignette: { darkness: 0.4, offset: 0.15 },
     },
     text: {
-      color: "#ffffff",
-      outlineColor: "#000000",
+      color: "purple",
+      outlineColor: "purple",
     },
     ui: {
       buttonBg: "rgba(20, 20, 30, 0.8)",
@@ -70,8 +70,8 @@ export const THEMES = {
       vignette: { darkness: 0.15, offset: 0.2 },
     },
     text: {
-      color: "#2a3f54",
-      outlineColor: "#ffffff",
+      color: "#7E079C",
+      outlineColor: "#7E079C",
     },
     ui: {
       buttonBg: "rgba(42, 63, 84, 0.9)",
@@ -105,20 +105,17 @@ export const THEMES = {
       opacity: 0.25,
     },
     postProcessing: {
-      bloom: { intensity: 0.4, luminanceThreshold: 0.9 },
+      bloom: { intensity: 0.15, luminanceThreshold: 0.95 },
       vignette: { darkness: 0.5, offset: 0.1 },
     },
     text: {
-      color: "#00ffff",
-      outlineColor: "#ff00ff",
+      color: "#FF00FF",
+      outlineColor: "#FF00FF",
       emissive: "#00ffff",
       emissiveIntensity: 3,
       glowLayers: [
-        { scale: 1.008, color: "#00ffff", opacity: 0.9 },
-        { scale: 1.02, color: "#ff00ff", opacity: 0.7 },
-        { scale: 1.04, color: "#00ff88", opacity: 0.5 },
-        { scale: 1.06, color: "#ff0088", opacity: 0.4 },
-        { scale: 1.08, color: "#ffff00", opacity: 0.3 },
+        { scale: 1.02, color: "#00ffff", opacity: 0.3 },
+        { scale: 1.04, color: "#ff00ff", opacity: 0.15 },
       ],
     },
     ui: {

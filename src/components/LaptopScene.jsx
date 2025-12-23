@@ -22,15 +22,15 @@ const LaptopScene = memo(function LaptopScene() {
 
       <pointLight
         position={[0, 2, 3]}
-        intensity={30}
-        color="#e8f4ff"
+        intensity={20}
+        color="#ffffff"
         distance={8}
         decay={2}
       />
 
       <pointLight
         position={[1, 1, 1]}
-        intensity={15}
+        intensity={10}
         color="#ffffff"
         distance={5}
         decay={2}

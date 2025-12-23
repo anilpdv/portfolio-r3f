@@ -1,18 +1,18 @@
 import { memo, Suspense } from "react";
 import { useTheme } from "../../context/ThemeContext";
-import Starfield from "./Starfield";
 import Butterflies from "./Butterflies";
 import DigitalRain from "./DigitalRain";
+import Fireflies from "./Fireflies";
 
 const BackgroundEffects = memo(function BackgroundEffects() {
-  const { themeName, isTransitioning } = useTheme();
+  const { themeName } = useTheme();
 
   return (
     <group renderOrder={-1}>
       <Suspense fallback={null}>
-        {themeName === "night" && <Starfield />}
         {themeName === "day" && <Butterflies />}
         {themeName === "neon" && <DigitalRain />}
+        {themeName === "night" && <Fireflies />}
       </Suspense>
     </group>
   );

@@ -43,3 +43,4 @@ export function useSmoothAnimation(duration, onComplete) {
 
   return getProgress;
 }
+

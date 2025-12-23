@@ -31,3 +31,4 @@ export function usePerformanceMonitor(sampleRate = 60) {
     }
   });
 }
+

@@ -13,7 +13,7 @@ const PostProcessing = memo(function PostProcessing() {
   const { bloom: defaultBloom } = POST_PROCESSING_CONFIG;
   const { theme, themeName } = useTheme();
   const { bloom, vignette } = theme.postProcessing;
-  
+
   const isNeonTheme = themeName === "neon";
 
   return (
@@ -31,7 +31,11 @@ const PostProcessing = memo(function PostProcessing() {
         offset={vignette.offset}
         darkness={vignette.darkness}
       />
-      <ToneMapping mode={isNeonTheme ? ToneMappingMode.LINEAR : ToneMappingMode.ACES_FILMIC} />
+      <ToneMapping
+        mode={
+          isNeonTheme ? ToneMappingMode.LINEAR : ToneMappingMode.ACES_FILMIC
+        }
+      />
     </EffectComposer>
   );
 });

@@ -1,109 +1,76 @@
-import { Text } from "@react-three/drei";
+import { Text3D, Center } from "@react-three/drei";
 import { useRef, memo } from "react";
 import { TEXT_CONFIG } from "../config/sceneConfig";
 import { useThrottledFrame } from "../hooks/useAnimationFrame";
 import { useTheme } from "../context/ThemeContext";
-import { THEMES } from "../config/themes";
 
 const LaptopText = memo(function LaptopText({
   content = TEXT_CONFIG.content,
   position = TEXT_CONFIG.position,
   rotation = TEXT_CONFIG.rotation,
   fontSize = TEXT_CONFIG.fontSize,
-  font = TEXT_CONFIG.font,
 }) {
-  const textRef = useRef();
-  const { theme } = useTheme();
-  const { color, outlineWidth, outlineColor, animation } = TEXT_CONFIG;
+  const groupRef = useRef();
+  const { theme, themeName } = useTheme();
+  const isNeonTheme = themeName === "neon";
+  const textConfig = theme?.text || {};
 
-  const currentTheme = THEMES[theme];
-  const isNeonTheme = theme === "neon";
-  const textConfig = currentTheme?.text || {};
-
+  // Floating animation for night/day modes
   useThrottledFrame((state) => {
-    if (!isNeonTheme && textRef.current) {
+    if (!isNeonTheme && groupRef.current) {
       const time = state.clock.elapsedTime;
-
-      textRef.current.position.y =
+      groupRef.current.position.y =
         position[1] +
-        Math.sin(time * animation.floatSpeed) * animation.floatAmount;
-
-      const distance = state.camera.position.distanceTo(
-        textRef.current.position
-      );
-      const opacity = Math.min(1, Math.max(0.85, 1 - distance / 20));
-      textRef.current.fillOpacity = opacity;
+        Math.sin(time * TEXT_CONFIG.animation.floatSpeed) *
+          TEXT_CONFIG.animation.floatAmount;
     }
   }, 2);
 
-  if (isNeonTheme) {
-    // Simple neon effect with bright colors
-    return (
-      <group>
-        {/* Background glow */}
-        <Text
-          fontSize={fontSize * 1.1}
-          position={position}
-          font={font}
-          rotation-y={rotation}
-          maxWidth={2}
-          textAlign="center"
-          letterSpacing={0.05}
-          color={"rgb(255, 0, 255)"} // Bright magenta
-          fillOpacity={0.3}
-          frustumCulled={false}
-          renderOrder={997}
-          anchorX="center"
-          anchorY="middle"
-        >
-          {content}
-        </Text>
+  // 3D text parameters
+  const textParams = {
+    font: "/fonts/droid_sans_bold.typeface.json",
+    size: fontSize * 0.75,
+    height: 0.4,
+    bevelEnabled: true,
+    bevelSize: 0.03,
+    bevelThickness: 0.08,
+    curveSegments: 16,
+    bevelSegments: 6,
+    lineHeight: 0.75,
+    letterSpacing: 0.02,
+  };
 
-        {/* Main bright cyan text */}
-        <Text
-          ref={textRef}
-          fontSize={fontSize}
-          position={position}
-          font={font}
-          rotation-y={rotation}
-          maxWidth={2}
-          textAlign="center"
-          letterSpacing={0.05}
-          color={"rgb(0, 255, 255)"} // Bright cyan
-          outlineWidth={0.02}
-          outlineColor={"rgb(255, 0, 255)"} // Magenta outline
-          fillOpacity={1.0}
-          frustumCulled={false}
-          renderOrder={999}
-          anchorX="center"
-          anchorY="middle"
-        >
-          {content}
-        </Text>
+  if (isNeonTheme) {
+    return (
+      <group ref={groupRef} position={position} rotation-y={rotation}>
+        <Center>
+          <Text3D {...textParams}>
+            {`ANIL\nPALLI`}
+            <meshStandardMaterial
+              color={textConfig.color}
+              metalness={0.1}
+              roughness={0.7}
+            />
+          </Text3D>
+        </Center>
       </group>
     );
   }
 
+  // Night/Day mode
   return (
-    <Text
-      ref={textRef}
-      fontSize={fontSize}
-      position={position}
-      font={font}
-      rotation-y={rotation}
-      maxWidth={2}
-      textAlign="center"
-      letterSpacing={0.05}
-      outlineWidth={outlineWidth}
-      outlineColor={outlineColor}
-      color={textConfig.color || color}
-      frustumCulled={false}
-      renderOrder={999}
-      anchorX="center"
-      anchorY="middle"
-    >
-      {content}
-    </Text>
+    <group ref={groupRef} position={position} rotation-y={rotation}>
+      <Center>
+        <Text3D {...textParams}>
+          {`ANIL\nPALLI`}
+          <meshStandardMaterial
+            color={textConfig.color}
+            metalness={0.1}
+            roughness={0.7}
+          />
+        </Text3D>
+      </Center>
+    </group>
   );
 });
 

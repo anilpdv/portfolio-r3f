@@ -109,7 +109,7 @@ export const SCREEN_CONFIG = {
 
 export const TEXT_CONFIG = {
   content: "ANIL PALLI",
-  position: [2.5, 0.75, 0.75],
+  position: [2.5, 0.5, 0.75],
   rotation: -1.25,
   fontSize: 1.1,
   font: "/bangers-v20-latin-regular.woff",
